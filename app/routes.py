@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request
 import requests
 import json
 import os
@@ -31,6 +31,7 @@ def add_message():
 
     return render_template('message.html', ccn=ccn_redacted, cvv=cvv_redacted, exp=exp_redacted)
 
+
 @app.route("/forward", methods=['POST'])
 def forward():
     ccn = request.form['ccn']
@@ -48,6 +49,5 @@ def forward():
     ccn_clean = data['ccn']
     cvv_clean = data['cvv']
     exp_clean = data['exp']
-
 
     return render_template('forward.html', ccn=ccn_clean, cvv=cvv_clean, exp=exp_clean)
