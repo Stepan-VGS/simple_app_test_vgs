@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
 </head>
+
 <body>
-<h1>Revealed data:</h1>
-<div>{{ response.data }}</div>
+    <header>
+        <div class="limiter">
+            <h3>VGS Test Application Decrypted Response</h3></br></br>
+        </div>
+    </header>
+        <div class="container-fluid">
+            <div class="creditCardForm">
+            <div class="heading">
+                <h1>Credit Card: {{ccn}}</h1></br>
+                <h1>CVV: {{cvv}}</h1></br>
+                <h1>Expiration Date: {{exp}}</h1></br>
+            </div>
+            </div>
+        </div>
 </body>
 </html>

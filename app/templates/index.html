@@ -1,9 +1,49 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>Please, enter the text to be redacted</h1>
-<form method="post" action="/add_message">
-    <input type="text" name="message">
-    <button type="submit">Redact data</button>
-</form>
+<!DOCTYPE html>
+<html>
 
-{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <div class="limiter">
+                <h3>VGS Test Application Inbound Form</h3>
+            </div>
+        </header>
+        <div class="creditCardForm">
+            <div class="heading">
+                <h1>Please Send Payment Details to VGS</h1>
+            </div>
+            <div class="payment">
+                <form method="post" action="/add_message">
+                    <div class="form-group" id="card-number-field">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" name="ccn">
+                    </div>
+                    <div class="form-group CVV">
+                        <label for="cvv">CVV</label>
+                        <input type="text" class="form-control" id="cvv" name="cvv">
+                    </div>
+                    <div class="form-group" id="expiration-date">
+                        <label>Expiration Date</label>
+                        <input type="text" class="form-control" id="exp" name="exp">
+                    </div>
+                    <div class="form-group" id="pay-now">
+                        <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ error }}</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
