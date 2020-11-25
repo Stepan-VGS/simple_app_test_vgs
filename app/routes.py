@@ -1,7 +1,21 @@
 from app import app
-from flask import render_template, request, jsonify
+import sqlite3
+from flask import render_template, g, request, jsonify
 import requests
 import os
+
+def init_db():
+    database = 'database.db'
+    conn = sqlite3.connect(database)
+    c = conn.cursor()
+    c.execute('create table cards (cnumber text, cvv text, cexp text)')
+    query = "INSERT INTO table (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
+    c.execute(query)
+    conn.commit()
+    conn.close()
+    print('Added to DB')
+
+init_db()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -11,6 +25,14 @@ def index():
 def message():
     return render_template('message.html')
 
+
+@app.route('/database')
+def test():
+    g.db = sqlite3.connect('database.db')
+    cur = g.db.execute('select * from cards')
+    message = [dict(d1=row[0], d2=row[1], d3=row[2]) for row in cur.fetchall()]
+    g.db.close()
+    return render_template('message.html', message=message)
 
 @app.route('/post', methods=['POST'])
 def post():
