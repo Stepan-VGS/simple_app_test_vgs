@@ -9,7 +9,7 @@ def init_db():
     conn = sqlite3.connect(database)
     c = conn.cursor()
     c.execute('create table cards (cnumber text, cvv text, cexp text)')
-    query = "INSERT INTO table (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
+    query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
     c.execute(query)
     conn.commit()
     conn.close()
