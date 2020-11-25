@@ -61,7 +61,7 @@ vgsForm.field('#cc-expiration-date', {
 
 document.getElementById("collect-form").addEventListener('submit', (e) => {
   e.preventDefault();
-  vgsForm.submit('/vgs', {}, (status, response) => {
+  vgsForm.submit('/post', {}, (status, response) => {
     if (status === 200) {
       console.log("success");
     }
