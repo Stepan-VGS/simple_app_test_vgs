@@ -28,6 +28,7 @@ def showredacted():
     
     g.db.close()
     message = jsonify(data)
+    print(message)
     return render_template('message.html', message=message)
 
 @app.route('/post', methods=['POST'])
