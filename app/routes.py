@@ -40,9 +40,9 @@ def post():
     g.db = sqlite3.connect('database.db')
     #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
     g.db.execute('insert into Results (cnumber,cvv,cexp) values '\
-                 '(?,?,?)',[request.json['card_number'],
-                            request.json['card_cvc'],
-                            request.json['card_expirationDate']])
+                 '(?,?,?)',[request.json.card_number,
+                            request.json.card_cvc.,
+                            request.json.card_expirationDate])
 
     return message, 200
 
