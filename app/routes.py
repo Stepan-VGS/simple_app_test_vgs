@@ -15,8 +15,8 @@ def message():
 
 @app.route('/post', methods=['POST'])
 def post():
-    content = request.json
-    return content, 200
+    message = request.json
+    return message, 200
 
 
 @app.route("/forward", methods=['POST'])
