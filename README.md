@@ -7,6 +7,6 @@ You will need to update the .env file within the app directory and set the value
 
 Be sure to update the Inbound Route with the Upstream Host that's created using ngrok.
 Run this app using `flask run`
-It uses `sqlite3
+fin
 
 
