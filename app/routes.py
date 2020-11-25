@@ -8,6 +8,10 @@ import os
 def index():
     return render_template('index.html')
 
+@app.route('/message', methods=['GET'])
+def message():
+    return render_template('message.html')
+
 
 @app.route('/post', methods=['POST'])
 def post():
