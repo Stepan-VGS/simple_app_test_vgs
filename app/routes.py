@@ -28,7 +28,7 @@ def showredacted():
     g.db.close()
     message = json.dumps(data[0], sort_keys = False, indent = 2)
 
-    return render_template('showredacted.html', message=message, cvv=message.card_cvc, cnumber=message.card_number, cexp=message.card_expirationDate) 
+    return render_template('showredacted.html', message=message, cvc=data[0].card_cvc, cnumber=data[0].card_number, cexp=data[0].card_expirationDate) 
 
 @app.route('/post', methods=['POST'])
 def post():
