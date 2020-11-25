@@ -54,4 +54,4 @@ def reveal():
                         json={'card_number':cnumber,'card_cvc':cvc,'card_expirationDate':cexp},
                         verify='app/sandbox.pem')
     res = res.json()
-    return render_template('reveal.html', response=json.dumps(res, sort_keys = False, indent = 2))
+    return render_template('reveal.html', response=json.dumps(res.json, sort_keys = False, indent = 2))
