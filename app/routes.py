@@ -55,4 +55,4 @@ def reveal():
                         verify='app/sandbox.pem')
 
     res = res.json()
-    return render_template('forward.html', response=res)
+    return render_template('reveal.html', response=res)
