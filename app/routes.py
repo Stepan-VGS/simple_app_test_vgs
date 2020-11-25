@@ -41,6 +41,7 @@ def post():
     g.db = sqlite3.connect('database.db')
     g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
     g.db.execute("INSERT INTO cards (cnumber, cvv, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
+    g.db.commit()
     g.db.close()
     return message, 200
 
