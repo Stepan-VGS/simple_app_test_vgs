@@ -11,7 +11,8 @@ def index():
 
 @app.route('/post', methods=['POST'])
 def post():
-    return 'good message.html', 200
+    content = request.json
+    return content, 200
 
 
 @app.route("/forward", methods=['POST'])
