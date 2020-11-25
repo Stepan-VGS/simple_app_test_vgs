@@ -27,7 +27,7 @@ def showredacted():
     data = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
     message = data[0]
-    return render_template('message.html', message=message)
+    return render_template('showredacted.html', message=jsonify(message))
 
 @app.route('/post', methods=['POST'])
 def post():
