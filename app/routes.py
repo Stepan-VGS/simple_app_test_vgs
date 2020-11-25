@@ -40,11 +40,7 @@ def post():
     g.db.execute("INSERT INTO cards (cnumber, cvc, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
     g.db.commit()
     g.db.close()
-    response = app.response_class(
-        response=json.dumps(message),
-        mimetype='application/json'
-    )
-    return response
+    return message, 200
 
 
 
@@ -52,7 +48,7 @@ def post():
 def reveal():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
-    message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
+    message = dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()
     g.db.close()
 
     os.environ['HTTPS_PROXY'] = 'https://UStuxaJU5RVKd7JC4GWWZN1f:93390e04-3643-4f21-b277-c1bc0852de60@tntnopmrps6.SANDBOX.verygoodproxy.com:8080'
