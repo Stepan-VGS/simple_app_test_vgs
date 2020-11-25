@@ -6,13 +6,13 @@ import os
 
 def init_db():
     database = 'database.db'
-    g.db = sqlite3.connect(database)
+    conn = sqlite3.connect(database)
 
-    g.db.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvv TEXT, cexp TEXT)')
+    conn.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvv TEXT, cexp TEXT)')
     #query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
     #c.execute(query)
-
-    g.db.close()
+    conn.commit()
+    conn.close()
     print('Added to DB')
 
 init_db()
