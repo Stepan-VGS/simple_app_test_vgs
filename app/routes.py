@@ -2,8 +2,6 @@ from app import app
 from flask import render_template, request, jsonify
 import requests
 import os
-import sqlite3
-
 
 @app.route('/', methods=['GET'])
 def index():
