@@ -29,7 +29,7 @@ def showredacted():
     print(data)
     message = json.dumps(data[0], sort_keys = False, indent = 2)
 
-    return render_template('showredacted.html', message=message, data[0]['card_number'], data[0]['card_cvc'], data[0]['card_expirationDate']) 
+    return render_template('showredacted.html', message=message, cnumber=data[0]['card_number'], cvc=data[0]['card_cvc'], cexp=data[0]['card_expirationDate']) 
 
 @app.route('/post', methods=['POST'])
 def post():
