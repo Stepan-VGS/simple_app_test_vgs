@@ -1,7 +1,7 @@
 from app import app
 from app.config import Config
 import sqlite3
-from flask import render_template, g, request, jsonify, json
+from flask import render_template, g, request, json
 import requests
 import os
 
@@ -26,8 +26,8 @@ def showredacted():
     cur = g.db.execute('select * from cards')
     data = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
-    message = data[0]
-    return render_template('showredacted.html', message=jsonify(message))
+    message = json.dumps(data[0], sort_keys = False, indent = 2)
+    return render_template('showredacted.html', message=message)
 
 @app.route('/post', methods=['POST'])
 def post():
