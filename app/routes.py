@@ -48,14 +48,10 @@ def reveal():
     cnumber = request.form['card_number']
     cvc = request.form['card_cvc']
     cexp = request.form['card_expirationDate']
-    #g.db = sqlite3.connect('database.db')
-    #cur = g.db.execute('select * from cards')
-    #message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
-    #g.db.close()
     cfg = Config()
     os.environ['HTTPS_PROXY'] = 'https://'+cfg.USERNAME+':'+cfg.PASSWORD+'@'+cfg.VAULTID+'.SANDBOX.verygoodproxy.com:8080'
     res = requests.post('https://echo.apps.verygood.systems/post',
                         json={'card_number':cnumber,'card_cvc':cvc,'card_expirationDate':cexp},
                         verify='app/sandbox.pem')
     res = res.json()
-    return render_template('reveal.html', response=res)
+    return render_template('reveal.html', response=json.dumps(res, sort_keys = False, indent = 2))
