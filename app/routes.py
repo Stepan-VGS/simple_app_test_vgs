@@ -30,7 +30,7 @@ def message():
 def test():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
-    message = [dict(d1=row[0], d2=row[1], d3=row[2]) for row in cur.fetchall()]
+    message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
     return render_template('message.html', message=message)
 
@@ -39,14 +39,14 @@ def post():
     message = request.json
     print (message['card_number'])
     g.db = sqlite3.connect('database.db')
-    g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
+    #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
     g.db.execute("INSERT INTO cards (cnumber, cvv, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
     g.db.commit()
     g.db.close()
     return message, 200
 
 
-@app.route("/forward", methods=['POST'])
+@app.route("/reveal", methods=['POST'])
 def forward():
     message = request.form['message']
 
