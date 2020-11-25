@@ -28,8 +28,8 @@ def showredacted():
     print(data)
     g.db.close()
     formatted = json.dumps(data)
-    message = {"card_number":formatted[0],"card_cvc":formatted[1],"card_expireationDate":formatted[2]}
-    print(message)
+    message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
+    print(message[0])
     return render_template('message.html', message=message)
 
 @app.route('/post', methods=['POST'])
