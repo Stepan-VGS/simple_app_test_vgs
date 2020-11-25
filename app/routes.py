@@ -19,17 +19,15 @@ init_db()
 def index():
     return render_template('index.html')
 
-@app.route('/message', methods=['GET'])
-def message():
-    return render_template('message.html')
 
 
-@app.route('/test') #TEST ENDPOINT
-def test():
+@app.route('/showredacted') #TEST ENDPOINT
+def showredacted():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
-    message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
+    data = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
+    message = jsonify(data)
     return render_template('message.html', message=message)
 
 @app.route('/post', methods=['POST'])
