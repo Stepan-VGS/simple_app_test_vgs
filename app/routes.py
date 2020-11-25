@@ -10,9 +10,8 @@ def index():
 
 
 @app.route('/post', methods=['POST'])
-def add_message():
-    message = request.form['message']
-    return 'good message.html'
+def post():
+    return 'good message.html', 200
 
 
 @app.route("/forward", methods=['POST'])
