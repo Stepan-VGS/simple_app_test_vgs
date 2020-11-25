@@ -24,11 +24,10 @@ def index():
 @app.route('/showredacted') #TEST ENDPOINT
 def showredacted():
     g.db = sqlite3.connect('database.db')
-    data = g.db.execute('select * from cards').fetchall()
-    print(data)
-    g.db.close()
-    formatted = json.dumps(data)
+    cur = g.db.execute('select * from cards')
     message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
+    g.db.close()
+    
     print(message[0])
     return render_template('message.html', message=message)
 
