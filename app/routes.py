@@ -5,6 +5,7 @@ from flask import render_template, g, request, json
 import requests
 import os
 
+#Create DB to store redacted cc data
 def init_db():
     database = 'database.db'
     if (os.path.isfile(database)):
