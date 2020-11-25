@@ -48,7 +48,7 @@ def post():
 
 
 
-@app.route("/reveal", methods=['POST'])
+@app.route("/reveal", methods=['GET'])
 def reveal():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
