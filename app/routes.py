@@ -8,8 +8,8 @@ def init_db():
     database = 'database.db'
     conn = sqlite3.connect(database)
     c = conn.cursor()
-    c.execute('create table cards (cnumber text, cvv text, cexp text)')
-    query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
+    c.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvv TEXT, cexp TEXT)')
+    #query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
     #c.execute(query)
     conn.commit()
     conn.close()
@@ -40,7 +40,8 @@ def post():
     print (message['card_number'])
     g.db = sqlite3.connect('database.db')
     #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
-    g.db.execute('INSERT INTO cards (cnumber,cvv,cexp) VALUES (?,?,?)', (message['card_number'], message['card_cvc'], message['card_expirationDate']))
+    g.db.execute("INSERT INTO cards (cnumber, cvv, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
+    g.db.close()
     return message, 200
 
 
