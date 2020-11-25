@@ -20,8 +20,6 @@ init_db()
 def index():
     return render_template('index.html')
 
-
-
 @app.route('/showredacted') #TEST ENDPOINT
 def showredacted():
     g.db = sqlite3.connect('database.db')
@@ -41,8 +39,6 @@ def post():
     g.db.close()
     return message, 200
 
-
-
 @app.route("/reveal", methods=['GET'])
 def reveal():
     g.db = sqlite3.connect('database.db')
@@ -50,13 +46,9 @@ def reveal():
     message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
     cfg = Config()
-    print(cfg.USERNAME)
-
-    os.environ['HTTPS_PROXY'] = 'https://'+os.environ.get('USERNAME')+':'+os.environ.get('PASSWORD')+'@'+os.environ.get('VAULTID')+'.SANDBOX.verygoodproxy.com:8080'
+    os.environ['HTTPS_PROXY'] = 'https://'+cfg.USERNAME+':'+cfg.PASSWORD+'@'+cfg.VAULTID+'.SANDBOX.verygoodproxy.com:8080'
     res = requests.post('https://echo.apps.verygood.systems/post',
                         json=message,
                         verify='app/sandbox.pem')
-
-
     res = res.json()
     return render_template('reveal.html', response=res)
