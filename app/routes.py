@@ -27,7 +27,7 @@ def showredacted():
     data = g.db.execute('select * from cards').fetchall()
     print(data)
     g.db.close()
-    message = jsonify(data)
+    message = json.dumps(data)
     print(message)
     return render_template('message.html', message=message)
 
