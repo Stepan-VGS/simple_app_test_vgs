@@ -10,10 +10,8 @@
             <hr>
             <div class="alert alert-info p-2">
               Click to Reveal Redacted Data
-            <form id="cc-form" method="get" action="/reveal">
-              <button type="submit" class="btn btn-success btn-block">Reveal Card Data</button>
-          </form>
-          <form id="cc-form" action="/reveal">
+              
+          <form id="cc-form" method="get" action="/reveal">
             <div class="form-group">
               <label for="cc-number">Card number</label>
               <input type="text" value={{cnumber}}>
@@ -26,9 +24,7 @@
               <label for="cc-expiration-date">Expiration date</label>
               <input type="text" value={{cexp}}>
             </div>
-
-            <!--Submit credit card form button-->
-            <button type="submit" class="btn btn-success btn-block">Submit</button>
+            <button type="submit" class="btn btn-success btn-block">Reveal Card Data</button>
           </form>
           </div>
         </div>
