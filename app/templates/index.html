@@ -153,14 +153,19 @@
   // Submits all of the form fields by executing a POST request.
   document.getElementById('cc-form')
     .addEventListener('submit', function(e) {
+      var redirect = function(){
+      document.location.href="contact.html"
+    };
       e.preventDefault();
       form.submit('/post', {
       }, function(status, data) {
-        document.getElementById('result').innerHTML = JSON.stringify(data.json, null, 4);
+        redirect();
       });
     }, function (errors) {
       document.getElementById('result').innerHTML = errors;
     });
+
+
 </script>
 </body>
 </html>
