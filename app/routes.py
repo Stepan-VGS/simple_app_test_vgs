@@ -7,12 +7,13 @@ import os
 
 def init_db():
     database = 'database.db'
+    if (os.path.isfile(database)):
+        os.remove(database)
     conn = sqlite3.connect(database)
-
     conn.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvc TEXT, cexp TEXT)')
     conn.commit()
     conn.close()
-    print('Added to DB')
+    print('DB Created')
 
 init_db()
 
@@ -54,4 +55,4 @@ def reveal():
                         json={'card_number':cnumber,'card_cvc':cvc,'card_expirationDate':cexp},
                         verify='app/sandbox.pem')
     res = res.json()
-    return render_template('reveal.html', response=res.data)
+    return render_template('reveal.html', response=res)
