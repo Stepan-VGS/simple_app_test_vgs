@@ -9,7 +9,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/add_message', methods=['POST'])
+@app.route('/post', methods=['POST'])
 def add_message():
     message = request.form['message']
     return render_template('message.html', message=message)
