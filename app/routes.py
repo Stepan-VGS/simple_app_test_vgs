@@ -1,6 +1,6 @@
 from app import app
 import sqlite3
-from flask import render_template, g, request, jsonify
+from flask import render_template, g, request, jsonify, json
 import requests
 import os
 
@@ -8,9 +8,7 @@ def init_db():
     database = 'database.db'
     conn = sqlite3.connect(database)
 
-    conn.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvv TEXT, cexp TEXT)')
-    #query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
-    #c.execute(query)
+    conn.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvc TEXT, cexp TEXT)')
     conn.commit()
     conn.close()
     print('Added to DB')
@@ -39,11 +37,15 @@ def post():
     message = request.json
     print (message['card_number'])
     g.db = sqlite3.connect('database.db')
-    #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
-    g.db.execute("INSERT INTO cards (cnumber, cvv, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
+    g.db.execute("INSERT INTO cards (cnumber, cvc, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
     g.db.commit()
     g.db.close()
-    return message, 200
+    response = app.response_class(
+        response=json.dumps(message),
+        mimetype='application/json'
+    )
+    return response
+
 
 
 @app.route("/reveal", methods=['POST'])
