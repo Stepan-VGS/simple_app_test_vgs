@@ -22,13 +22,13 @@
             <div class="form-group">
               <label for="cc-number">Card number</label>
               
-              <input class="form-field" type="text" value={{cnumber}}>
+              <input class="form-field" type="text" name="card_number" value={{cnumber}}>
              
             </div>
             <div class="form-group">
               <label for="cc-cvc">CVC</label>
               
-                <input class="form-field" type="text" value={{cvc}}>
+                <input class="form-field" type="text" name="card_cvc" value={{cvc}}>
               
               
             </div>
@@ -36,10 +36,10 @@
                
               <label for="cc-expiration-date">Expiration date</label>
               
-              <input class="form-field" type="text" value={{cexp}}>
+              <input class="form-field" type="text" name="card_expirationDate" value={{cexp}}>
               
             </div>
-            <input type="submit" class="btn btn-success btn-block">Reveal Card Data</input>
+            <input type="submit" class="btn btn-success btn-block">
           </form>
           </div>
         </div>
