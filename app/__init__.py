@@ -1,5 +1,7 @@
 from flask import Flask
 from app.config import Config
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -8,6 +10,8 @@ app.config.from_object(Config)
 
 
 from app import routes
+
+
 
 
 
