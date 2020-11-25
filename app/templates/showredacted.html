@@ -6,23 +6,31 @@
       <div class="col-md-4">
         <div class="row card card-outline-secondary">
           <div class="card-body">
-            <h3 class="text-center"></h3>
+            <h3 class="text-center">Submit Form to Reveal Redacted Data</h3>
             <hr>
             <div class="alert alert-info p-2">
-              Click to Reveal Redacted Data
+              
               
           <form id="cc-form" method="get" action="/reveal">
             <div class="form-group">
               <label for="cc-number">Card number</label>
+              <span class="form-field">
               <input type="text" value={{cnumber}}>
+              </span>
             </div>
             <div class="form-group">
               <label for="cc-cvc">CVC</label>
-              <input type="text" value={{cvc}}>
+              <span class="form-field">
+                <input type="text" value={{cvc}}>
+              </span>
+              
             </div>
             <div class="form-group">
+               <span class="form-field">
               <label for="cc-expiration-date">Expiration date</label>
+              <span class="form-field">
               <input type="text" value={{cexp}}>
+              </span>
             </div>
             <button type="submit" class="btn btn-success btn-block">Reveal Card Data</button>
           </form>
