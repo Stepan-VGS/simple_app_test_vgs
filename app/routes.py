@@ -11,7 +11,7 @@ def init_db():
     g.db.execute('CREATE table cards (cnumber INT PRIMARY KEY, cvv TEXT, cexp TEXT)')
     #query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
     #c.execute(query)
-    g.db.commit()
+
     g.db.close()
     print('Added to DB')
 
@@ -39,7 +39,7 @@ def post():
     message = request.json
     print (message['card_number'])
     g.db = sqlite3.connect('database.db')
-    #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
+    g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
     g.db.execute("INSERT INTO cards (cnumber, cvv, cexp) VALUES (?,?,?)", (message['card_number'], message['card_cvc'], message['card_expirationDate']))
     g.db.close()
     return message, 200
