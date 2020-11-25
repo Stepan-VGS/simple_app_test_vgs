@@ -13,6 +13,29 @@
             <form id="cc-form" method="get" action="/reveal">
               <button type="submit" class="btn btn-success btn-block">Reveal Card Data</button>
           </form>
+          <form id="cc-form" action="/message">
+            <div class="form-group">
+              <label for="cc-name">Name</label>
+              <input type="text" value="default value">
+            </div>
+            <div class="form-group">
+              <label for="cc-number">Card number</label>
+              <input type="text" value="default value">
+            </div>
+            <div class="form-group">
+              <label for="cc-cvc">CVC</label>
+              <input type="text" value={{message.card_cvc}}>
+            </div>
+            <div class="form-group">
+              <label for="cc-expiration-date">Expiration date</label>
+              <span class="form-field">
+              
+              </span>
+            </div>
+
+            <!--Submit credit card form button-->
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
+          </form>
           </div>
         </div>
       </div>
