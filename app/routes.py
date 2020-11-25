@@ -1,4 +1,5 @@
 from app import app
+from app.config import Config
 import sqlite3
 from flask import render_template, g, request, jsonify, json
 import requests
@@ -48,11 +49,14 @@ def reveal():
     cur = g.db.execute('select * from cards')
     message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
+    cfg = Config()
+    print(cfg.USERNAME)
 
     os.environ['HTTPS_PROXY'] = 'https://'+os.environ.get('USERNAME')+':'+os.environ.get('PASSWORD')+'@'+os.environ.get('VAULTID')+'.SANDBOX.verygoodproxy.com:8080'
     res = requests.post('https://echo.apps.verygood.systems/post',
                         json=message,
                         verify='app/sandbox.pem')
+
 
     res = res.json()
     return render_template('reveal.html', response=res)
