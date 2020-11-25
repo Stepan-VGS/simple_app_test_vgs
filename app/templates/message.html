@@ -51,11 +51,29 @@
       </style>
 </head>
 <body>
-<h1>Redacted data:</h1>
-<pre>{{ message }}</pre>
-<form method="get" action="/reveal">
-    <button type="submit">Reveal Card Data</button>
-</form>
+<div class="col-md-4">
+    <div class="alert alert-warning">
+      <h5 class="text-center">Redacted data</h5>
+      <pre id="result">
+        {{ message }}
+      </pre>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-4">
+      <div class="row card card-outline-secondary">
+        <div class="card-body">
+          <hr>
+          <div class="alert alert-info p-2">
+            Click to Reveal Redacted Data
+          </div>
+          <form id="cc-form" method="get" action="/reveal">
+            <button type="submit" class="btn btn-success btn-block">Reveal Card Data</button>
+        </form>
+        </div>
+      </div>
+    </div>
 
+  </div>
 </body>
 </html>
