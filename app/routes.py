@@ -25,7 +25,7 @@ def index():
 def showredacted():
     g.db = sqlite3.connect('database.db')
     data = g.db.execute('select * from cards').fetchall()
-    
+    print(data)
     g.db.close()
     message = jsonify(data)
     print(message)
