@@ -16,21 +16,23 @@ def init_db():
 
 init_db()
 
+#HOMEPAGE
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
-@app.route('/showredacted') #TEST ENDPOINT
+#DISPLAYS REDACTED INFORMATION AND FORM TO RETRIEVE REVEALED DATA
+@app.route('/showredacted')
 def showredacted():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
     data = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
-    print(data)
     message = json.dumps(data[0], sort_keys = False, indent = 2)
 
     return render_template('showredacted.html', message=message, cnumber=data[0]['card_number'], cvc=data[0]['card_cvc'], cexp=data[0]['card_expirationDate']) 
 
+#POST endpoint for VGS Outbound Route
 @app.route('/post', methods=['POST'])
 def post():
     message = request.json
@@ -41,8 +43,9 @@ def post():
     g.db.close()
     return message, 200
 
-@app.route("/reveal", methods=['GET'])
+@app.route('/reveal', methods=['POST'])
 def reveal():
+    request.form['']
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
     message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
