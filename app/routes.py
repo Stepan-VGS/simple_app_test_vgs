@@ -49,7 +49,7 @@ def reveal():
     message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
 
-    os.environ['HTTPS_PROXY'] = 'https://'+os.environ.get(USERNAME)+':'+os.environ.get(PASSWORD)+'@'+os.environ.get(VAULTID)+'.SANDBOX.verygoodproxy.com:8080'
+    os.environ['HTTPS_PROXY'] = 'https://'+os.environ.get('USERNAME')+':'+os.environ.get('PASSWORD')+'@'+os.environ.get('VAULTID')+'.SANDBOX.verygoodproxy.com:8080'
     res = requests.post('https://echo.apps.verygood.systems/post',
                         json=message,
                         verify='app/sandbox.pem')
