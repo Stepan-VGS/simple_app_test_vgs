@@ -25,10 +25,9 @@ def index():
 def showredacted():
     g.db = sqlite3.connect('database.db')
     cur = g.db.execute('select * from cards')
-    message = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
+    data = [dict(card_number=row[0], card_cvc=row[1], card_expirationDate=row[2]) for row in cur.fetchall()]
     g.db.close()
-    
-    print(message[0])
+    message = data[0]
     return render_template('message.html', message=message)
 
 @app.route('/post', methods=['POST'])
