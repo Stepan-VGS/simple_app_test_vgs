@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
               <label for="cc-cvc">CVC</label>
-              <input type="text" value={{message['card_cvc']}}>
+              <input type="text">
             </div>
             <div class="form-group">
               <label for="cc-expiration-date">Expiration date</label>
@@ -45,6 +45,10 @@
         <h5 class="text-center">Redacted Card Data</h5>
         <pre id="result">
           {{ message }}
+          OTHER
+          {{ message["card_cvc"] }}
+          OTHER OTHER
+          {{ message.card_cvc }}
         </pre>
       </div>
     </div>
