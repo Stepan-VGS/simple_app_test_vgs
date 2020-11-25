@@ -10,7 +10,7 @@ def init_db():
     c = conn.cursor()
     c.execute('create table cards (cnumber text, cvv text, cexp text)')
     query = "INSERT INTO cards (cvv, cnumber, cexp)  VALUES ('data1', 'data2', 'data3')"
-    c.execute(query)
+    #c.execute(query)
     conn.commit()
     conn.close()
     print('Added to DB')
@@ -37,6 +37,13 @@ def test():
 @app.route('/post', methods=['POST'])
 def post():
     message = request.json
+    g.db = sqlite3.connect('database.db')
+    #g.db.execute("INSERT INTO cards (cnumber, cvv, cexp)  VALUES ('data1', 'data2', 'data3')")
+    g.db.execute('insert into Results (cnumber,cvv,cexp) values '\
+                 '(?,?,?)',[request.json['card_number'],
+                            request.json['card_cvc'],
+                            request.json['card_expirationDate']])
+
     return message, 200
 
 
