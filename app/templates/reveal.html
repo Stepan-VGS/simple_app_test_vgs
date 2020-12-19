@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<main>
+    <div class="row">
+        <div class="col-md-4"></div>
+            <div class="row card card-outline-secondary">
+                <div class="card-body">
+                    <h3 class="text-center">Reveal Credit Card Payment</h3>
+                    <form action="/reveal_data" method="post">
+                        <div class="form-group">
+                            <label for="cc-number">Token data</label>
+                                <input type="text" name="token_data">
+                        </div>
+                    <!--submit button-->
+                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        <div class="col-md-1"></div>
+        <form action="/" method='GET'>
+            <input type="submit" value="Go to Redact Data" />
+        </form>
+    </div>
+
+</main>
+
+{% endblock %}

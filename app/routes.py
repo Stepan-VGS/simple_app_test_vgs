@@ -4,25 +4,30 @@ import requests
 import os
 
 
+username = app.config.get("USERNAME")
+password = app.config.get("PASSWORD")
+vault_id = app.config.get("VAULT_ID")
+vgs_sample_echo_server = app.config.get("VGS_SAMPLE_ECHO_SERVER")
+port = app.config.get("PORT")
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
+@app.route('/grab_data', methods=['GET','POST'])
+def grab_data():
+    return render_template('reveal.html')
 
-@app.route('/add_message', methods=['POST'])
-def add_message():
-    message = request.form['message']
-    return render_template('message.html', message=message)
+@app.route('/reveal_data', methods=['POST'])
+def reveal_data():
+    
+    payload = request.form['token_data']
+    headers = {
+    'Content-Type': 'application/json'  
+    }
 
-
-@app.route("/forward", methods=['POST'])
-def forward():
-    message = request.form['message']
-
-    os.environ['HTTPS_PROXY'] = 'https://USERNAME:PASSWORD@{your_tenant_id}.SANDBOX.verygoodproxy.com:8080'
-    res = requests.post('https://echo.apps.verygood.systems/post',
-                        json={'message': message},
-                        verify='{path_to_cert_file}')
+    os.environ['HTTPS_PROXY'] = f'http://{username}:{password}@{vault_id}.sandbox.verygoodproxy.com:{port}'
+    res = requests.request("POST", f'{vgs_sample_echo_server}/post' , headers=headers, data=payload, verify='app/CERT.PEM')
 
     res = res.json()
-    return render_template('forward.html', response=res)
+    return render_template('final.html',response=res)

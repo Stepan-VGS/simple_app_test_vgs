@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    table, td, th {
+        border: 1px solid black;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+</style>
+<main>
+    <h1> Revealed Credit Card Information </h1>
+    <table style="width:100%">
+        <tr>
+          <th>{{response.data}}</th>
+        </tr>
+    </table>
+</main>
+
+{% endblock %}
