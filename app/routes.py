@@ -3,7 +3,7 @@ from flask import render_template, request, jsonify
 import requests
 import os
 
-
+#Renders Main Page
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
