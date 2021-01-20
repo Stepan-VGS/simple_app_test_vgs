@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,54 +12,68 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/2.2.1/vgs-collect.js"></script>
+<!-------------------------STYLE-------------------------------->
+<style>
+  body {
+  padding: 25px;
 
-  <style>
-    body {
-      padding: 25px;
-    }
+  }
 
-    span[id*="cc-"] {
-      display: block;
-      height: 40px;
-      margin-bottom: 15px;
-    }
+  span[id*="cc-"] {
+  display: block;
+  height: 40px;
+  margin-bottom: 15px;
+  }
 
-    span[id*="cc-"] iframe {
-      height: 100%;
-      width: 100%;
-    }
+  span[id*="cc-"] iframe {
+  height: 100%;
+  width: 100%;
+  }
 
-    pre {
-      font-size: 12px;
-    }
+  pre {
+  font-size: 12px;
+  }
 
-    .form-field {
-      display: block;
-      width: 100%;
-      height: calc(2.25rem + 2px);
-      padding: .375rem .75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: .25rem;
-      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    }
+  .form-field {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
 
-    .form-field iframe {
-      border: 0 none transparent;
-      height: 100%;
-      vertical-align: middle;
-      width: 100%;
-    }
+  .form-field iframe {
+  border: 0 none transparent;
+  height: 100%;
+  vertical-align: middle;
+  width: 100%;
+  }
 
-    p {
-      margin-bottom: 10px;
-    }
-  </style>
+  p {
+  margin-bottom: 10px;
+  }
+  
+  button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  background-color: green;
+  color: white;
+  margin: center;
+}
+  
+  
+</style>
 </head>
+
+<!-------------------------FORM-------------------------------->
+
 <body>
 <main>
   <div class="row">
@@ -100,6 +118,8 @@
         </div>
       </div>
     </div>
+
+  <!--------------INSTRUCTIONS/RESULTS---------------->  
     <div class="col-md-4">
       <div class="alert alert-secondary">
         <h5 class="text-center">Instruction</h5>
@@ -113,10 +133,14 @@
       <div class="alert alert-warning">
         <h5 class="text-center">Response</h5>
         <pre id="result">
-          Submit a form to see result.
+          Submit the form to see result.
         </pre>
+        <form action="/add_message" method='GET'>
+          <input type="submit" value="Reveal Redacted Data!" />
+      </form>
       </div>
     </div>
+  </div>
   </div>
 </main>
 
@@ -124,7 +148,7 @@
 <script>
   // VGS Collect form initialization
   const form = VGSCollect.create("tnt60zkr2pg", "sandbox", function(state) {});
-
+  
   // Create VGS Collect field for credit card name
   form.field('#cc-name', {
     type: 'text',
@@ -173,3 +197,4 @@
 </script>
 </body>
 </html>
+{% endblock %}
