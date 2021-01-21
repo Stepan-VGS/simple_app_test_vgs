@@ -14,7 +14,7 @@ def add_message():
     
     return render_template('message.html')
 
-
+#route implementation that shows the user the decrpyted data
 @app.route("/forward", methods=['POST'])
 def forward():
     
