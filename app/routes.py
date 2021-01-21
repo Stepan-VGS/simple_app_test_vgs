@@ -1,28 +1,31 @@
 from app import app
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, json
 import requests
 import os
 
-#Renders Main Page
+#simple route that renders the home page
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
-
-@app.route('/add_message', methods=['POST'])
+#route implementation that asks the user to enter redacted data
+@app.route('/add_message', methods=['GET','POST'])
 def add_message():
-    message = request.form['message']
-    return render_template('message.html', message=message)
+    
+    return render_template('message.html')
 
 
 @app.route("/forward", methods=['POST'])
 def forward():
-    message = request.form['message']
+    
+    payload = request.form['json_data']
+    headers = {
+    'Content-Type': 'application/json'  
+    }
 
-    os.environ['HTTPS_PROXY'] = 'https://USERNAME:PASSWORD@{your_tenant_id}.SANDBOX.verygoodproxy.com:8080'
-    res = requests.post('https://echo.apps.verygood.systems/post',
-                        json={'message': message},
-                        verify='{path_to_cert_file}')
+    os.environ['HTTPS_PROXY'] = 'https://USa4XQsMziwmAjwF445b3eX9:372cce8a-1dc0-46dc-a248-ac4436066058@tnt60zkr2pg.sandbox.verygoodproxy.com:8080'
+    
 
+    res = requests.post('https://echo.apps.verygood.systems/post',headers=headers, data=payload, verify='app/cert.pem')
     res = res.json()
-    return render_template('forward.html', response=res)
+    return render_template('forward.html',response=res)
