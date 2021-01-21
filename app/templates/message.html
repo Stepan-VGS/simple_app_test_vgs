@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Redacted data: {{ message }}</h1>
-<form method="post" action="/forward">
-    <input placeholder="alias here" type="text" name="message">
-    <button type="submit">Reveal data</button>
-</form>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+
+<main>
+    <div> 
+        <h1>Reveal Credit Card Information</h3>
+            <p>Now that you have your redacted data, copy and paste the results onto the form below</p>
+                    <form action="/forward" method="POST">
+                        <div class="form-group">
+                            <label></label>
+                            <input type="text" name="json_data">
+                        </div>
+                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    </form>
+                </div>
+                <br>
+        <form action="/" method='GET'>
+            <input type="submit" value="Home Page" />
+        </form>
+    </div>
+</main>
+
+{% endblock %}

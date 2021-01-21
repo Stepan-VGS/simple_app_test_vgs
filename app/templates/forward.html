@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Revealed data:</h1>
-<div>{{ response.data }}</div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+
+<main>
+    <h1 style="margin: center;"> Revealed Credit Card Information </h1>
+    <div style="margin: center;">
+        
+          <p>{{response.data}}</p>
+     
+    </div>
+    <form action="/" method='GET'>
+        <input style="margin: center;" type="submit" value="Home Page" />
+    </form>
+</main>
+
+{% endblock %}
