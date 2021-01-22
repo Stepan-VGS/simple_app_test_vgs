@@ -2,8 +2,16 @@
 
 This is a simple web application that enables customers to encrypt and decrypt their credit card information through a form that is processed through a VGS inbound and outbound route. This application demonstrates how inbound and outbound routes can redact and reveal data.
 
+Feel free to download and watch my video that shows a quick demonstration of my vgs integrated app in action!
 
-MAKE SURE YOU HAVE THE MOST RECENT VERSION OF PYTHON,PIP AND VIRTUALENV INSTALLED ON YOUR COMPUTER,
+# Requirements
+
+Python How to install: (https://www.python.org/downloads/)
+
+PIP    How to install: (https://www.makeuseof.com/tag/install-pip-for-python/)
+
+VirtualEnv
+
 
 # How to run application
 
