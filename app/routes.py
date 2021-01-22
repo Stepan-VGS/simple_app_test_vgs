@@ -10,9 +10,9 @@ import os
 #your_tenant_id = app.config.get("your_tenant_id")
 
 #enter your credentials in the empty strings
-USERNAME= ''
-PASSWORD= ''
-your_tenant_id=''
+USERNAME= 'USa4XQsMziwmAjwF445b3eX9'
+PASSWORD= '372cce8a-1dc0-46dc-a248-ac4436066058'
+your_tenant_id='tnt60zkr2pg'
 
 #simple route that renders the home page
 @app.route('/', methods=['GET'])
@@ -37,5 +37,5 @@ def forward():
     os.environ['HTTPS_PROXY'] = f'http://{USERNAME}:{PASSWORD}@{your_tenant_id}.sandbox.verygoodproxy.com:8080'
     res = requests.post('https://echo.apps.verygood.systems/post',headers=headers, data=payload, verify='app/cert.pem')
     res = res.json()
-
+    
     return render_template('forward.html',response=res)
