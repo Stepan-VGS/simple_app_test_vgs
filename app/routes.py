@@ -5,14 +5,15 @@ import os
 
 
 
-#enter your credentials in the empty strings
-USERNAME= ''
-PASSWORD= ''
-your_tenant_id=''
+USERNAME = app.config.get("USERNAME")
+PASSWORD = app.config.get("PASSWORD")
+your_tenant_id = app.config.get("your_tenant_id")
+
 
 #simple route that renders the home page
 @app.route('/', methods=['GET'])
 def index():
+    
     return render_template('index.html')
 
 #route implementation that asks the user to enter redacted data
