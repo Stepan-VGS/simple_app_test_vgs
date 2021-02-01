@@ -16,8 +16,6 @@ class VGS_App_Testing(unittest.TestCase):
     
     def setUp(self):
 
-        # creates a test client
-
         self.app = app.test_client()
         self.app.testing = True
         pass
