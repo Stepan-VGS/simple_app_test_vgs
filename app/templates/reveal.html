@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Please, enter the card number's token to be redacted</h1>
+<form method="post" action="/forward">
+    <input type="text" name="message">
+    <button type="submit">Redact data</button>
+</form>
+
+{% endblock %}

@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Please, enter the text to be redacted</h1>
-<form method="post" action="/add_message">
-    <input type="text" name="message">
-    <button type="submit">Redact data</button>
-</form>
-
+  <body>
+    <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/2.9.0/vgs-collect.js"></script>
+    <form id="collect-form" action="{{ url_for('post') }}" method="post">
+      <div id="cc-number" class="form-field"></div>
+      <div class="form-field-group">
+        <div id="cc-expiration-date" class="form-field"></div>
+        <div id="cc-cvc" class="form-field"></div>
+      </div>
+      <button type="submit" className="form-button">Submit</button>
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 {% endblock %}
