@@ -1,15 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Redacted data: {{ message }}</h1>
-<form method="post" action="/forward">
-    <input placeholder="alias here" type="text" name="message">
-    <button type="submit">Reveal data</button>
-</form>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/2.2.1/vgs-collect.js"></script>
+<!-------------------------STYLE-------------------------------->
+<head>
+<style>
+
+    body {
+    padding: 25px;
+    text-align: center;
+    }
+    
+    pre {
+    font-size: 12px;
+    }
+
+    form {
+    display: inline-block;
+    }
+
+    .form-field {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+  
+    .form-field iframe {
+    border: 0 none transparent;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+    }
+  
+    p {
+    margin-bottom: 10px;
+    } 
+  </style>
+</head>
+
+<main>
+    <div class="card-body">
+        <h1 class="text-center">Reveal Credit Card Information</h3>
+            <p class="text-center">Now that you have your redacted data, copy and paste the results onto the form below</p>
+                <form action="/forward" method="POST">
+                    <div class="form-group" c>
+                        <input type="text" name="json_data">
+                    </div>
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                
+                </form><br><br>
+            <form action="/" method='GET'>
+                    <input type="submit" class="btn btn-danger btn-block" value="Home Page" />
+            </form>        
+    </div>   
+</main>
+
+{% endblock %}
