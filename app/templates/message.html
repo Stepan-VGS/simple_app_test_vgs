@@ -5,9 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Redacted data: {{ message }}</h1>
+<h1>Redacted Card Number: {{ card_num }}</h1>
+<h1>Redacted Expiration Date: {{ exp_date }}</h1>
+<h1>Redacted CVV: {{ cvv }}</h1>
 <form method="post" action="/forward">
-    <input placeholder="alias here" type="text" name="message">
+		<label for="card_num">Card Number</label>
+    	<input type="text" name="card_num">
+	</p>
+	<p>
+    	<label for="exp_date">Expiration Date</label>
+    	<input type="text" name="exp_date">
+    </p>
+    <p>
+    	<label for="cvv">CVV</label>
+    	<input type="text" name="cvv">
+    </p>
     <button type="submit">Reveal data</button>
 </form>
 
