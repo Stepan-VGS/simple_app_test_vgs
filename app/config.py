@@ -2,6 +2,8 @@ import os
 
 
 class Config(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+    USERNAME = os.environ.get('USERNAME')
+    PASSWORD = os.environ.get('PASSWORD')
+    VAULTID = os.environ.get('VAULTID')
     DEBUG = True
 
