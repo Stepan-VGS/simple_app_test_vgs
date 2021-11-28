@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+  }
+  html {
+    font-family: "Arial", sans-serif;
+  }
+  form {
+    width: 100%;
+    max-width: 500px;
+  }
+  label {
+    margin-bottom: 4px;
+    margin-top: 8px;
+    display: block;
+    color: #40545F;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  button {
+      margin-top: 4px;
+  }
+
