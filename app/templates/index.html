@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Please, enter the text to be redacted</h1>
-<form method="post" action="/add_message">
-    <input type="text" name="message">
-    <button type="submit">Redact data</button>
+<h1>Enter payment method</h1>
+<form method="post" action="/redact">
+    <div>
+        <label>Name on card:</label>
+        <input type="text" name="card_holder"> 
+    </div>
+    <div>
+        <label for="card_num">Card Number:</label>
+        <input type="text" name="card_num">
+    </div>
+    <div>
+        <label for="card_exp">Card Exp:</label>
+        <input type="text" name="card_exp">
+    </div>
+    <div>
+        <label for="card_cvc">Card CVC:</label>
+        <input type="text" name="card_cvc">
+
+    </div>
+    <button type="submit">Redact</button>
 </form>
 
 {% endblock %}

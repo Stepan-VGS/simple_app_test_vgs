@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Redacted data: {{ message }}</h1>
-<form method="post" action="/forward">
-    <input placeholder="alias here" type="text" name="message">
-    <button type="submit">Reveal data</button>
-</form>
+{% extends "base.html" %}
+{% block content %}
+<h3>Name: {{ data['card_holder'] }}</h3>
+<h3>Redacted CCN: {{ data['card_number'] }}</h3>
+<h3>Redacted exp: {{ data['card_exp'] }}</h3>
+<h3>Redacted cvc: {{ data['card_cvc'] }}</h3>
+<br/>
+<p>Form pre-filled with data above</p>
+<form method="post" action="/reveal">
+    <div>
+        <label for="card_num">Card Number</label>
+        <input type="text" name="card_num" value="{{ data['card_number'] }}">
+    </div>
+    <div>
+        <label for="card_exp">Card EXP</label>
+        <input type="text" name="card_exp" value="{{ data['card_exp'] }}">
+    </div>
+    <div>
+        <label for="card_cvc">Card card_cvc</label>
+    <input type="text" name="card_cvc" value="{{ data['card_cvc'] }}">
+    </div>
 
-</body>
-</html>
+    <button type="submit">Reveal</button>
+</form>
+{% endblock %}

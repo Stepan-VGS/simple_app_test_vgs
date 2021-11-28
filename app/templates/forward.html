@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Revealed data:</h1>
-<div>{{ response.data }}</div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h3>Revealed ccn: {{ data['card_number'] }}</h3>
+<h3>Revealed exp: {{ data['card_exp'] }}</h3>
+<h3>Revealed cvc: {{ data['card_cvc'] }}</h3>
+
+{% endblock %}
