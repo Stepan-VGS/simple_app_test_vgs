@@ -41,7 +41,7 @@ This application will demonstrate the use of VGS redact and reveal features.
 			$.card_cvc
 	- Outbound Routes
 		Conditions for all OB routes will be
-			PathInfo > matches > /reveal
+			PathInfo > matches > /post
 			ContentType > equals > application/json
 		Fields in JSON path, need three varibles:
 			$.card_number
