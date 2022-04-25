@@ -1,0 +1,52 @@
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .form-field {
+            width: 100%;
+            height: 30px;
+            position: relative;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 3px 0px rgba(0, 0, 0, .3);
+            padding: 0 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+        .form-button {
+            border: 1px solid #1f8ab0;
+            background-color: #3b495c;
+            border-color: #3b495c;
+            color: #ced5e0;
+            font-family: inherit;
+            border-radius: 4px;
+            font-size: 16px;
+            height: 35px;
+            width: 100%;
+        }
+    </style>
+	<title>Reveal Page</title>
+</head>
+<body>
+	<div><h1>Reveal Page<h1></div>
+    <h3>Revealed Card Number: {{ card_number }}</h3>
+    <h3>Revealed Card Exp:    {{ card_exp }}</h3>
+    <h3>Revealed Card cvc:    {{ card_cvc }}</h3>
+    <form action="{{ url_for('reveal') }}" method="post">
+        <div>card_number:<input type="text" id="card_number" name="card_number" class="form-field"></div>
+		<div>card_exp:<input type="text" id="card_exp" name="card_exp" class="form-field"></div>
+		<div>card_cvc<input type="text" id="card_cvc" name="card_cvc" class="form-field"></div>
+        <button type="submit" className="form-button" id="submitButton">Submit</button>
+    </form>
+	<div><a href="{{url_for('redact_page')}}">Redact Page</a></div>
+</body>
+</html>

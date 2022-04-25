@@ -1,9 +1,128 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>Please, enter the text to be redacted</h1>
-<form method="post" action="/add_message">
-    <input type="text" name="message">
-    <button type="submit">Redact data</button>
-</form>
+<html>
+<head>
+    <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/2.11.0/vgs-collect.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .form-field {
+            width: 100%;
+            height: 40px;
+            position: relative;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 3px 0px rgba(0, 0, 0, .3);
+            padding: 0 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+        .form-field-group {
+            display: flex;
+            flex-flow: wrap;
+        }
+        .form-field-group div {
+            flex: 0 0 50%;
+        }
+        .form-field-group div:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        .form-field-group div:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        .form-button {
+            border: 1px solid #1f8ab0;
+            background-color: #3b495c;
+            border-color: #3b495c;
+            color: #ced5e0;
+            font-family: inherit;
+            border-radius: 4px;
+            font-size: 16px;
+            height: 35px;
+            width: 100%;
+        }
+    </style>
+	<title>Redact Page</title>
+</head>
+<body>
+	<div><h1>Redact Page<h1></div>
+	<div id="aliases"></div>
+    <form id="collect-form">
+        <div id="cc-number" class="form-field"></div>
+        <div class="form-field-group">
+            <div id="cc-expiration-date" class="form-field"></div>
+            <div id="cc-card_cvc" class="form-field"></div>
+        </div>
+        <button type="submit" className="form-button" id="submitButton">Submit</button>
+    </form>
+	<div><a href="{{url_for('reveal_page')}}">Reveal Page</a></div> 
+    <script>
+        const submitButton = document.getElementById('submitButton');
+        //submitButton.setAttribute('disabled', 'true');
 
-{% endblock %}
+        const vgsForm = window.VGSCollect.create('tntpvpogns5', 'SANDBOX', (state) => {
+            for(var field in state)
+            {
+                if (!state[field]["isValid"])
+                {
+                    return;
+                }
+            }
+            submitButton.removeAttribute('disabled');
+        });
+        
+        const css = {
+          boxSizing: 'border-box',
+          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI"',
+        };
+        
+        const ccNum = vgsForm.field('#cc-number', {
+          type: 'card-number',
+          name: 'card_number',
+          placeholder: 'Card number',
+          showCardIcon: true,
+          validations: ['required'], // Don't need a valid number for demo, 'validCardNumber'],
+          css: css,
+        });
+        
+        const card_cvc = vgsForm.field('#cc-card_cvc', {
+          type: 'card-security-code',
+          name: 'card_cvc',
+          placeholder: 'card_cvc',
+          maxLength: 3,
+          validations: ['required', 'validCardSecurityCode'],
+          css: css,
+        });
+        
+        const exp = vgsForm.field('#cc-expiration-date', {
+          type: 'card-expiration-date',
+          name: 'card_exp',
+          placeholder: 'MM / YY',
+          validations: ['required', 'validCardExpirationDate'],
+          css: css,
+        });
+        
+        document.getElementById("collect-form").addEventListener('submit', (e) => {
+          e.preventDefault();
+          vgsForm.submit('/redact', {}, (status, response) => {
+			if (status === 200) {
+              document.getElementById("aliases").innerHTML = 
+				"<h3>Card Number: " + response["card_number"] + 
+				"</h3><br><h3>Card Expiration: " + 	response["card_exp"] +
+				"</h3><br><h3>Card CVC: " + response["card_cvc"] + "</h3>";
+            }
+          }, (error) => {
+            console.log(error);
+          });
+        });
+		
+    </script>
+
+</body>
+</html>
